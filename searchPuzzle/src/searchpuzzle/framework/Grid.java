@@ -25,7 +25,9 @@ public class Grid implements Comparable<Grid> {
     }
     
     public Grid(Tile[] tiles){
-        this.tiles = tiles;
+        for (int i = 0; i < 9; i++){
+            this.tiles[i] = new Tile(tiles[i]);
+        }
     }
     
     
@@ -72,13 +74,13 @@ public class Grid implements Comparable<Grid> {
                 j = i + 1;
                 if(tiles[i].getLocation().getY() > tiles[j].getLocation().getY()){
                     Tile temp;
-                    temp = tiles[i];
-                    tiles[i] = tiles[j];
+                    temp = new Tile(tiles[i]);
+                    tiles[i] = new Tile(tiles[j]);
                     tiles[j] = temp;
                 } else if((tiles[i].getLocation().getY() == tiles[j].getLocation().getY())&&(tiles[i].getLocation().getX() > tiles[j].getLocation().getX())){
                     Tile temp;
-                    temp = tiles[i];
-                    tiles[i] = tiles[j];
+                    temp = new Tile(tiles[i]);
+                    tiles[i] = new Tile(tiles[j]);
                     tiles[j] = temp;
                 }
             }
@@ -125,8 +127,8 @@ public class Grid implements Comparable<Grid> {
             System.out.println(tiles[desiredLocation].getGoalLocation());
             
             Tile t = new Tile(tiles[desiredLocation]);
-            tiles[desiredLocation] = new Tile(tiles[tileLocation]);
-            tiles[tileLocation] = t;
+            this.tiles[desiredLocation] = new Tile(tiles[tileLocation]);
+            this.tiles[tileLocation] = t;
             System.out.println(tiles[tileLocation].getGoalLocation());
             System.out.println(tiles[desiredLocation].getGoalLocation());
         }
@@ -155,7 +157,9 @@ public class Grid implements Comparable<Grid> {
                 
                 Grid newChild = new Grid(tiles);
                 newChild.displayGrid();
+                System.out.println(newChild.getIndex(ti));
                 newChild.swapTiles(newChild.getIndex(t), newChild.getIndex(ti));
+                System.out.println(newChild.getIndex(ti));
                 newChild.displayGrid();
                 newChild.setDistance(distance + 1);
                 children.add(newChild);
