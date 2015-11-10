@@ -39,6 +39,21 @@ public class Tile{
     
     public int getTileNumber() {return tileNumber;}
     
+    public int getCurrentTileNumber(){
+        switch(getLocation().getY()){
+            case 1: {
+                return getLocation().getX();
+            }
+            case 2: {
+                return (int) (Math.pow(getLocation().getY(), 2) + (getLocation().getX() - 1));
+            }
+            case 3: {
+                return getLocation().getY() * 2 + getLocation().getX();
+            }
+        }
+        return -1;
+    }
+    
     public boolean isAtGoal() {return goalLocation == location;}
     
     public boolean isBlank(){return blank;}

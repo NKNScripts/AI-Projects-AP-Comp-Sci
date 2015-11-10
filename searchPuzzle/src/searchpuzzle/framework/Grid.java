@@ -91,10 +91,18 @@ public class Grid implements Comparable<Grid> {
     public void displayGrid(){
         orderTiles();
         int count = 0;
-        System.out.println("------LOCATIONS------");
+        System.out.println("------GOAL LOCATIONS------");
         for(int i = 1; i <= 3; i++){
             for(int j = 1; j <= 3; j++){
                 System.out.print(tiles[count++].getGoalLocation() + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println("------LOCATIONS------");
+        count = 0;
+        for(int i = 1; i <= 3; i++){
+            for(int j = 1; j <= 3; j++){
+                System.out.print(tiles[count++].getLocation() + "\t");
             }
             System.out.println();
         }
@@ -128,7 +136,7 @@ public class Grid implements Comparable<Grid> {
             
             Tile t = new Tile(tiles[desiredLocation]);
             this.tiles[desiredLocation] = new Tile(tiles[tileLocation]);
-            this.tiles[tileLocation] = t;
+            this.tiles[tileLocation] = new Tile(t);
             System.out.println(tiles[tileLocation].getGoalLocation());
             System.out.println(tiles[desiredLocation].getGoalLocation());
         }
